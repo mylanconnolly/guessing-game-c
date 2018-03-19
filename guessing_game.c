@@ -29,7 +29,7 @@ int parse_num(char value[]) {
   int num = 0;
 
   if (sscanf(value, "%d", &num) != 1) {
-    printf("That didn't work.... try using a valid number greater than 0.\n");
+    printf("That didn't work... Try using a valid number greater than 0.\n");
   }
   return num;
 }
@@ -56,12 +56,12 @@ void usage() {
 }
 
 int main(int argc, char *argv[]) {
-  int rand_num = 0;
-  int guess_num = 0;
-  int counter = 0;
-  int max = 0;
-  int max_tries = 0;
-  int c;
+  int rand_num = 0,
+      guess_num = 0,
+      counter = 0,
+      max = 0,
+      max_tries = 0,
+      c = 0;
   bool correct = false;
 
   while ((c = getopt(argc, argv, "hm:M:")) != -1) {
