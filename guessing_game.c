@@ -50,7 +50,7 @@ int ask_num(char prompt[]) {
 }
 
 void usage() {
-  printf("guessing_game [options]\n");
+  printf("Usage: guessing_game [-m number] [-M number]\n");
   printf("\t-m number\tSpecify the maximum possible number.\n");
   printf("\t-M number\tSpecify the maximum number of tries.\n");
 }
@@ -73,6 +73,7 @@ int main(int argc, char *argv[]) {
       max = parse_num(optarg);
 
       if (max == 0) {
+        usage();
         return 1;
       }
       break;
@@ -80,6 +81,7 @@ int main(int argc, char *argv[]) {
       max_tries = parse_num(optarg);
 
       if (max_tries == 0) {
+        usage();
         return 1;
       }
       break;
