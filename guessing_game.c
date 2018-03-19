@@ -8,6 +8,10 @@
 #include <stdbool.h>
 #include <unistd.h>
 
+/**
+ * Checks whether the two numbers match. Prints a message and returns false if
+ * they don't match. Returns true if they do match.
+ */
 bool check_num(int rand_num, int guess_num) {
   if (guess_num < rand_num) {
     printf("Your guess is too low.\n");
@@ -20,11 +24,18 @@ bool check_num(int rand_num, int guess_num) {
   }
 }
 
+/**
+ * Seeds the random number generator and then returns a random number from 1 and
+ * the maximum number specified.
+ */
 int gen_num(int max) {
   srand(time(NULL));
   return rand() % max + 1;
 }
 
+/**
+ * Parses a number from the given character array.
+ */
 int parse_num(char value[]) {
   int num = 0;
 
@@ -34,6 +45,10 @@ int parse_num(char value[]) {
   return num;
 }
 
+/**
+ * Asks for a number. Since we're only concerned with numbers greater than 0, we
+ * return 0 in the event that there was an error.
+ */
 int ask_num(char prompt[]) {
   int num = 0;
   char input[100];
@@ -49,20 +64,26 @@ int ask_num(char prompt[]) {
   return num;
 }
 
+/**
+ * Print usage information
+ */
 void usage() {
   printf("Usage: guessing_game [-m number] [-M number]\n");
   printf("\t-m number\tSpecify the maximum possible number.\n");
   printf("\t-M number\tSpecify the maximum number of tries.\n");
 }
 
+/**
+ * Main function
+ */
 int main(int argc, char *argv[]) {
-  int rand_num = 0,
-      guess_num = 0,
-      counter = 0,
-      max = 0,
-      max_tries = 0,
-      c = 0;
-  bool correct = false;
+  int rand_num = 0,     // The random number we're generating.
+      guess_num = 0,    // The user's current guess.
+      counter = 0,      // The counter (keeping track of how many times the user guessed).
+      max = 0,          // Maximum bound for random numbers.
+      max_tries = 0,    // The maximum amount of tries (if set).
+      c = 0;            // Used for getopt.
+  bool correct = false; // Tracks whether the user made a correct guess.
 
   while ((c = getopt(argc, argv, "hm:M:")) != -1) {
     switch (c) {
